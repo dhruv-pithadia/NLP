@@ -1,0 +1,106 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="carousel.css">
+    <title>Carousel</title>
+</head>
+<body>
+<div class="custom-carousel">
+    <div class="carousel-container">
+        <div class="carousel-slide">
+            <img src="https://smbajajgroup.com/images_website/img1" alt="Image 1">
+            <img src="https://smbajajgroup.com/images_website/img2" alt="Image 2">
+            <img src="https://smbajajgroup.com/images_website/img3" alt="Image 3">
+            <img src="https://smbajajgroup.com/images_website/img4" alt="Image 4">
+            <img src="https://smbajajgroup.com/images_website/img5" alt="Image 5">
+        </div>
+    </div>
+    <div class="carousel-arrow left-arrow" onclick="prevSlide()">&#10094;</div>
+    <div class="carousel-arrow right-arrow" onclick="nextSlide()">&#10095;</div>
+    <div class="experience-badge">
+        <img src="experience_badge_url" alt="70 years of experience">
+    </div>
+</div>
+
+<script>
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        const slides = document.querySelector('.carousel-slide');
+        const totalSlides = slides.children.length;
+        currentSlide = (index + totalSlides) % totalSlides; // Loop the index
+        slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
+
+    setInterval(() => {
+      nextSlide();
+    }, 5000); // Change slide every 5 seconds
+</script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="carousel.css">
+    <title>Carousel</title>
+</head>
+<body>
+<div class="custom-carousel">
+    <div class="carousel-container">
+        <div class="carousel-slide">
+            <img src="https://smbajajgroup.com/images_website/img1" alt="Image 1">
+            <img src="https://smbajajgroup.com/images_website/img2" alt="Image 2">
+            <img src="https://smbajajgroup.com/images_website/img3" alt="Image 3">
+            <img src="https://smbajajgroup.com/images_website/img4" alt="Image 4">
+            <img src="https://smbajajgroup.com/images_website/img5" alt="Image 5">
+        </div>
+    </div>
+    <div class="carousel-arrow left-arrow" onclick="prevSlide()">&#10094;</div>
+    <div class="carousel-arrow right-arrow" onclick="nextSlide()">&#10095;</div>
+    <div class="experience-badge">
+        <img src="experience_badge_url" alt="70 years of experience">
+    </div>
+</div>
+
+<script>
+    let currentSlide = 0;
+
+    function updateSlides() {
+        const slides = document.querySelectorAll('.carousel-slide img');
+        slides.forEach((slide, index) => {
+            slide.style.transform = `translateX(${(index - currentSlide) * 100}%)`;
+            slide.style.zIndex = index === currentSlide ? 1 : 0;
+            slide.style.opacity = index === currentSlide ? 1 : 0;
+        });
+    }
+
+    function nextSlide() {
+        const slides = document.querySelectorAll('.carousel-slide img');
+        currentSlide = (currentSlide + 1) % slides.length;
+        updateSlides();
+    }
+
+    function prevSlide() {
+        const slides = document.querySelectorAll('.carousel-slide img');
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        updateSlides();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        updateSlides();
+    });
+</script>
+</body>
+</html>
